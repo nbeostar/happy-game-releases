@@ -1,0 +1,89 @@
+@font-face { font-family: "Andika"; src: url("fonts/Andika-Regular.ttf") format("truetype"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Andika"; src: url("fonts/Andika-Bold.ttf") format("truetype"); font-weight: 700; font-display: swap; }
+
+:root {
+  --ink: #2a2a40;
+  --muted: #5a5a72;
+  --paper: #fffaf0;
+  --sky: #8fd3f4;
+  --card: #ffffff;
+  --accent: #ffb37a;
+  --btn: #3aa86b;
+  --btn-ink: #ffffff;
+  --line: #2a2a40;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --ink: #f3f0e8; --muted: #c4c2d4; --paper: #1d2236; --sky: #26456a; --card: #2a3150; --line: #f3f0e8; }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; font-family: "Andika", system-ui, sans-serif; font-size: 1.125rem; line-height: 1.6;
+  color: var(--ink); background: linear-gradient(var(--sky) 0, var(--paper) 360px) no-repeat, var(--paper);
+  min-height: 100vh;
+}
+main { max-width: 960px; margin: 0 auto; padding: 0 16px 40px; }
+a { color: inherit; }
+h1, h2 { line-height: 1.2; }
+h1 { font-size: clamp(2.2rem, 6vw, 3.4rem); margin: 0 0 .1em; }
+h2 { font-size: 1.5rem; margin: 0 0 .5em; }
+.top { max-width: 960px; margin: 0 auto; padding: 16px; }
+.top a { text-decoration: none; font-weight: 700; }
+
+.hero { display: flex; gap: 32px; align-items: center; padding: 24px 0 32px; }
+.hero.center { flex-direction: column; text-align: center; padding-top: 64px; }
+.hero .icon { border-radius: 36px; border: 5px solid var(--line); background: var(--accent); flex: none; }
+.tagline { font-size: 1.4rem; font-weight: 700; margin: 0 0 .5em; }
+.meta, .hint { color: var(--muted); font-size: .95rem; }
+
+.btn {
+  display: inline-block; background: var(--btn); color: var(--btn-ink); text-decoration: none; font-weight: 700;
+  font-size: 1.35rem; padding: 16px 32px; border-radius: 999px; border: 4px solid var(--line);
+  box-shadow: 0 6px 0 var(--line); min-height: 56px;
+}
+.btn:hover { transform: translateY(2px); box-shadow: 0 4px 0 var(--line); }
+.btn:focus-visible, a:focus-visible { outline: 4px solid #ffd23f; outline-offset: 3px; }
+
+.panel {
+  background: var(--card); border: 4px solid var(--line); border-radius: 28px; padding: 20px 24px; margin: 0 0 24px;
+}
+.two { display: grid; grid-template-columns: 1fr 280px; gap: 24px; align-items: stretch; margin-bottom: 24px; }
+.two .panel { margin: 0; }
+.qr { text-align: center; }
+.qr img { background: #fff; border-radius: 16px; padding: 8px; max-width: 100%; height: auto; }
+.steps { padding-left: 1.3em; margin: 0 0 .5em; }
+.steps li { margin: .5em 0; }
+.feats { padding-left: 1.2em; }
+.feats li { margin: .35em 0; }
+.safe { background: color-mix(in srgb, var(--accent) 35%, transparent); padding: 12px 16px; border-radius: 16px; }
+code { background: color-mix(in srgb, var(--ink) 12%, transparent); padding: 2px 6px; border-radius: 6px; word-break: break-all; }
+
+.shots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 0 0 24px; }
+.shots figure { margin: 0; }
+.shots img { width: 100%; height: auto; border-radius: 18px; border: 4px solid var(--line); display: block; background: var(--sky); }
+.shots figcaption { font-size: .9rem; color: var(--muted); padding-top: 6px; }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.cards.big { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+.card {
+  display: flex; gap: 20px; align-items: center; text-decoration: none; background: var(--card);
+  border: 4px solid var(--line); border-radius: 28px; padding: 20px; box-shadow: 0 6px 0 var(--line);
+}
+.card:hover { transform: translateY(2px); box-shadow: 0 4px 0 var(--line); }
+.card img { border-radius: 24px; border: 3px solid var(--line); background: var(--accent); flex: none; }
+.card.small { box-shadow: none; padding: 12px 16px; }
+.card.small img { border-radius: 16px; }
+.go { color: var(--muted); font-style: normal; font-weight: 700; }
+
+footer { text-align: center; color: var(--muted); font-size: .9rem; padding: 24px 16px 40px; max-width: 960px; margin: 0 auto; }
+
+@media (max-width: 720px) {
+  body { font-size: 1.05rem; }
+  .hero { flex-direction: column; text-align: center; gap: 16px; }
+  .hero .icon { width: 128px; height: 128px; }
+  .two { grid-template-columns: 1fr; }
+  .shots { grid-template-columns: 1fr; }
+  .btn { display: block; text-align: center; }
+  .qr { display: none; } /* on a phone/tablet you tap the button; the code is for a second screen */
+}
+@media (prefers-reduced-motion: reduce) { .btn:hover, .card:hover { transform: none; } }
