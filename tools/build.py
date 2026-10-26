@@ -54,6 +54,24 @@ GAMES = [
                   "Vijf werelden met elk drie niveaus",
                   "Klaar! Hoeveel sterren haal jij?"],
     },
+    {
+        "slug": "memory",
+        "key": "mem",
+        "name": "Memory",
+        "tagline": "Vind alle paartjes",
+        "intro": "Draai twee kaarten om en zoek de plaatjes die bij elkaar horen: dieren, gebouwen, drankjes, planten, eten en voertuigen. "
+                 "Heb je een paartje? Dan zie je er ook meteen het woord bij!",
+        "color": "#ffb3c7",
+        "feats": [
+            "Vier borden: 4\u00d74, 4\u00d75, 4\u00d76 en 5\u00d75 (met een gratis jokerkaart in het midden)",
+            "Zeven thema's, ook een mix van alles",
+            "Geen tijdsdruk, geen verliezen: elke ronde eindigt met een feestje",
+            "Past bij kinderen van 4 tot 7 jaar",
+        ],
+        "shots": ["Een paartje gevonden: het woord verschijnt",
+                  "Het grootste bord met een gratis jokerkaart",
+                  "Kies je favoriete thema"],
+    },
 ]
 
 HEAD = """<!doctype html>
