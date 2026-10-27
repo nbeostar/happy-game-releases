@@ -22,6 +22,7 @@ GAMES = [
         "slug": "letterpostbode",
         "key": "lpb",
         "name": "Letterpostbode",
+        "age": "5 tot 7 jaar",
         "tagline": "Leren lezen met de postbode",
         "intro": "De postbode brengt brieven rond. Op elke envelop staat een letter, een woord of een zinnetje. "
                  "Lees het en stop de brief in de juiste brievenbus!",
@@ -30,7 +31,7 @@ GAMES = [
             "27 niveaus: van losse letters tot zinnetjes met drie woorden of meer",
             "Lukt het niet? Het woord licht klank voor klank op, zodat je kunt hardop lezen",
             "Geen tijdsdruk, geen verliezen: fout? Gewoon nog een keer proberen",
-            "Past bij groep 2 tot en met 4 (5 tot 7 jaar)",
+            "Voor kinderen van 5 tot 7 jaar",
         ],
         "shots": ["Een woord lezen en de goede brievenbus kiezen",
                   "Zinnetjes lezen: wie doet wat?",
@@ -40,6 +41,7 @@ GAMES = [
         "slug": "rekenrups",
         "key": "rr",
         "name": "Rekenrups",
+        "age": "5 tot 7 jaar",
         "tagline": "Optellen en aftrekken tot 20",
         "intro": "Een vrolijke rups loopt door een zonnig landschap. Elke som die je goed hebt, laat hem een stukje groeien. "
                  "Tel de stipjes en kies het antwoord!",
@@ -48,7 +50,7 @@ GAMES = [
             "15 niveaus: plus en min tot 10, daarna tot 20 en door elkaar",
             "Stipjes om mee te tellen, ook bij het bruggetje over de tien",
             "Geen tijdsdruk, geen verliezen: fout? Gewoon nog een keer proberen",
-            "Past bij groep 2 tot en met 4 (5 tot 7 jaar)",
+            "Voor kinderen van 5 tot 7 jaar",
         ],
         "shots": ["Tel de stipjes en kies het antwoord",
                   "Vijf werelden met elk drie niveaus",
@@ -58,6 +60,7 @@ GAMES = [
         "slug": "memory",
         "key": "mem",
         "name": "Memory",
+        "age": "4 tot 7 jaar",
         "tagline": "Vind alle paartjes",
         "intro": "Draai twee kaarten om en zoek de plaatjes die bij elkaar horen: dieren, gebouwen, drankjes, planten, eten en voertuigen. "
                  "Heb je een paartje? Dan zie je er ook meteen het woord bij!",
@@ -66,11 +69,31 @@ GAMES = [
             "Vier borden: 4\u00d74, 4\u00d75, 4\u00d76 en 5\u00d75 (met een gratis jokerkaart in het midden)",
             "Zeven thema's, ook een mix van alles",
             "Geen tijdsdruk, geen verliezen: elke ronde eindigt met een feestje",
-            "Past bij kinderen van 4 tot 7 jaar",
+            "Voor kinderen van 4 tot 7 jaar",
         ],
         "shots": ["Een paartje gevonden: het woord verschijnt",
                   "Het grootste bord met een gratis jokerkaart",
                   "Kies je favoriete thema"],
+    },
+    {
+        "slug": "agentbonjour",
+        "key": "ab",
+        "name": "Agent Bonjour",
+        "age": "9 tot 12 jaar",
+        "tagline": "Frans leren als geheim agent",
+        "intro": "De sluwe vos Le Renard stuurt geheime berichten in het Frans. Jij bent agent in opleiding: "
+                 "ontcijfer zijn berichten en vang hem in zes dossiers, van het station tot het carnaval!",
+        "color": "#8fd3c8",
+        "feats": [
+            "Zes dossiers met de belangrijkste Franse woorden: begroeten, familie, kleren, eten, dieren, het weer, school, tijd en feesten",
+            "Per dossier drie codes: woorden, zinnen en een uitdaging met zinspuzzels en invuloefeningen",
+            "Na elk antwoord zie je de Franse zin met de Nederlandse vertaling, en een tip als het niet lukt",
+            "Geen tijdsdruk, geen verliezen: fout? Gewoon nog een keer proberen",
+            "Voor kinderen van 9 tot 12 jaar",
+        ],
+        "shots": ["Lees de zin en kies de goede prent",
+                  "Gedecodeerd! De vertaling verschijnt meteen",
+                  "Bouw de Franse zin met woordtegels"],
     },
 ]
 
@@ -112,7 +135,7 @@ def game_page(game):
     )
     others = "\n".join(
         '<a class="card small" href="../%s/"><img src="../assets/%s-icon.png" alt="" width="72" height="72">'
-        "<span><strong>%s</strong><br>%s</span></a>" % (o["slug"], o["slug"], esc(o["name"]), esc(o["tagline"]))
+        "<span><strong>%s</strong><br>%s<br><span class=\"age\">%s</span></span></a>" % (o["slug"], o["slug"], esc(o["name"]), esc(o["tagline"]), esc(o["age"]))
         for o in other
     )
     return HEAD.format(
@@ -128,6 +151,7 @@ def game_page(game):
   <div>
     <h1>{esc(game['name'])}</h1>
     <p class="tagline">{esc(game['tagline'])}</p>
+    <p class="age">{esc(game['age'])}</p>
     <p>{esc(game['intro'])}</p>
     <p><a class="btn" id="download" href="https://github.com/{REPO}/releases" data-game="{s}">Download voor Android</a></p>
     <p class="meta" id="meta">Gratis &middot; geen advertenties &middot; werkt zonder internet</p>
@@ -177,7 +201,7 @@ def game_page(game):
 </div>
 </section>
 </main>
-<footer>Gemaakt met zorg voor kleine lezers en rekenaars. Vragen of een idee? Zeg het de maker.</footer>
+<footer>Gemaakt met zorg voor kinderen. Vragen of een idee? Zeg het de maker.</footer>
 <script src="../assets/site.js"></script>
 </body>
 </html>
@@ -187,19 +211,20 @@ def game_page(game):
 def index_page():
     cards = "\n".join(
         f'<a class="card" href="{g["slug"]}/" style="--accent:{g["color"]}"><img src="assets/{g["slug"]}-icon.png" alt="" width="120" height="120">'
-        f'<span><strong>{esc(g["name"])}</strong><br>{esc(g["tagline"])}<br><em class="go">Bekijk en download &rarr;</em></span></a>'
+        f'<span><strong>{esc(g["name"])}</strong><br>{esc(g["tagline"])}<br><span class="age">{esc(g["age"])}</span><br><em class="go">Bekijk en download &rarr;</em></span></a>'
         for g in GAMES
     )
     return HEAD.format(
-        title="Happy Games – gratis spelletjes voor kleine lezers en rekenaars",
-        desc="Gratis Android-spelletjes voor kinderen van 5 tot 7 jaar: leren lezen en rekenen. Geen advertenties.",
+        title="Happy Games – gratis spelletjes voor kinderen",
+        desc="Gratis Android-spelletjes voor kinderen van 4 tot 12 jaar: lezen, rekenen, memory en Frans. Geen advertenties.",
         base="",
         icon="letterpostbode-icon.png",
     ) + f"""<body class="home">
 <main>
 <section class="hero center">
   <h1>Happy Games</h1>
-  <p class="tagline">Gratis spelletjes voor kinderen van 5 tot 7 jaar</p>
+  <p class="tagline">Gratis spelletjes voor kinderen</p>
+  <p>Leren lezen, rekenen, onthouden en Frans. Bij elk spel staat voor welke leeftijd het is.</p>
   <p>Geen advertenties, geen aankopen, geen account. Alles werkt zonder internet.</p>
 </section>
 <section class="cards big">

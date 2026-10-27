@@ -1,6 +1,6 @@
 # happy-game releases
 
-Download pages and APK releases for the Android games (Rekenrups, Letterpostbode).
+Download pages and APK releases for the Android games (Rekenrups, Letterpostbode, Memory, Agent Bonjour).
 Site: https://nbeostar.github.io/happy-game-releases/
 
 This repo holds no source code. Releases are published here by the private build repo
